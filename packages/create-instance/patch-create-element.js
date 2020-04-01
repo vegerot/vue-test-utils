@@ -45,6 +45,9 @@ function shouldNotBeStubbed(el, whitelist, modifiedComponents) {
 }
 
 export function patchCreateElement(_Vue, stubs, stubAllComponents) {
+  if (!Object.keys(stubs).length && !stubAllComponents) {
+    return
+  }
   // This mixin patches vm.$createElement so that we can stub all components
   // before they are rendered in shallow mode. We also need to ensure that
   // component constructors were created from the _Vue constructor. If not,
